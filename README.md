@@ -25,10 +25,14 @@ To view a note, click on its title in the list on the left-hand side.
 To delete a note, click on the trash icon next to the note title in the list.
 
 ## Screenshots
-(Include screenshots of your application here)
+
+![Alt text](<public/assets/Screenshot 2023-08-07 at 11.40.40 PM.png>) 
+![Alt text](<public/assets/Screenshot 2023-08-07 at 11.40.46 PM.png>) 
+![Alt text](<public/assets/Screenshot 2023-08-07 at 11.40.51 PM.png>)
 
 ## Video Demo
-(Include a link to your video demonstration here)
+
+https://drive.google.com/file/d/1znMA8d5Q1WK5Ss2fFhCkhrYwyYaD3r3T/view
 
 ## Technologies Used
 Node.js
