@@ -14,17 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 
-// Route to serve the notes.html file
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'));
-});
-
 // Catch-all route to serve the index.html file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
-// Route to get all notes
 app.get('/api/notes', (req, res) => {
     const notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
     res.json(notes);
@@ -33,7 +23,8 @@ app.get('/api/notes', (req, res) => {
 // Route to add a new note
 app.post('/api/notes', (req, res) => {
     const newNote = req.body;
-    let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    newNote.id = uuidv4();
+    const notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
     notes.push(newNote);
     fs.writeFileSync('./db/db.json', JSON.stringify(notes));
     res.json(newNote);
@@ -46,6 +37,16 @@ app.delete('/api/notes/:id', (req, res) => {
     notes = notes.filter(note => note.id !== noteId);
     fs.writeFileSync('./db/db.json', JSON.stringify(notes));
     res.json({ message: 'Note deleted' });
+});
+
+// Route to serve the notes.html file
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
+});
+
+// Catch-all route to serve the index.html file
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 app.listen(PORT, () => {
